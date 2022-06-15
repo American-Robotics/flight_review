@@ -128,20 +128,20 @@ class StatisticsPlots:
                 log = _Log(db_tuple)
 
                 self._all_logs_dates.append(log.date)
-                if log.is_public == 1:
-                    if log.source == 'CI':
+                if log.is_public == 0:
+                    if log.source == 'webui':
                         self._ci_logs_dates.append(log.date)
                     else:
                         self._public_logs_dates.append(log.date)
                 else:
-                    if log.source == 'CI':
+                    if log.source == 'webui':
                         self._ci_logs_dates.append(log.date)
                     else:
                         self._private_logs_dates.append(log.date)
 
 
                 # LogsGenerated: public only
-                if log.is_public != 1 or log.source == 'CI':
+                if log.is_public != 0 or log.source == 'webui':
                     continue
 
                 cur.execute('select * from LogsGenerated where Id = ?', [log.log_id])
