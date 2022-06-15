@@ -13,7 +13,7 @@ from plot_app.config import get_db_filename
 # get the logs (but only the public ones)
 con = sqlite3.connect(get_db_filename(), detect_types=sqlite3.PARSE_DECLTYPES)
 cur = con.cursor()
-cur.execute('SELECT Id FROM Logs WHERE Public = 1 ORDER BY Date DESC')
+cur.execute('SELECT Id FROM Logs WHERE Public = 0 ORDER BY Date DESC') #updated public from 1 to 0.
 db_tuples = cur.fetchall()
 
 for db_row in db_tuples:    

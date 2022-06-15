@@ -70,8 +70,8 @@ class BrowseDataRetrievalHandler(tornado.web.RequestHandler):
                     '       LogsGenerated.* '
                     'FROM Logs '
                     '   LEFT JOIN LogsGenerated on Logs.Id=LogsGenerated.Id '
-                    'WHERE Logs.Public = 1 AND NOT Logs.Source = "CI" '
-                    +sql_order)
+                    'WHERE Logs.Public = 0 AND NOT Logs.Source = "CI" '
+                    +sql_order) # updated public from 1 to 0
 
         # pylint: disable=invalid-name
         Columns = collections.namedtuple("Columns", "columns search_only_columns")
