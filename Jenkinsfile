@@ -9,7 +9,7 @@ pipeline {
   
   environment {
     TAG_NAME = env.BRANCH_NAME.replace('/','_')
-    DOCKER_IMAGE = "FlightReview:${TAG_NAME}"
+    DOCKER_IMAGE = "flight_review:${TAG_NAME}"
     REGISTRY = "https://051301119471.dkr.ecr.us-east-1.amazonaws.com"
     CRED_ID = "AWS_ECR"
   }
