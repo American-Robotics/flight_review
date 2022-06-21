@@ -36,7 +36,7 @@ pipeline {
 
         // Build the docker image. The image is our artifact.        
         script {
-          targetImage = docker.build("${env.DOCKER_IMAGE}",  '-f ./Dockerfile .')
+          targetImage = docker.build("${env.DOCKER_IMAGE}",  '-f ./app/Dockerfile .')
         }        
       }
     }
