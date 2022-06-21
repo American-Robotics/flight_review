@@ -26,7 +26,7 @@ pipeline {
         sh 'git submodule update --init --recursive'
 
         script {
-          dir("app") 
+          
         // Store the current git commit rev in a variable for later use.
           GIT_COMMIT_REV = sh(returnStdout: true, script: "git log -n 1 --pretty=format:'%h'").trim()
           // Add a file in the build products indicating that we built it.
@@ -34,11 +34,12 @@ pipeline {
           // Inject it into the docker image
           sh 'cat ${WORKSPACE}/version.json'
         }
-
+        dir("app") {
         // Build the docker image. The image is our artifact.        
-        script {
-          targetImage = docker.build("${env.DOCKER_IMAGE}",  '-f ./app/Dockerfile .')
-        }        
+          script {
+            targetImage = docker.build("${env.DOCKER_IMAGE}",  '-f ./Dockerfile .')
+          }        
+        }
       }
     }
     
